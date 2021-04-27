@@ -1,0 +1,9 @@
+<p></p>
+<% @items.map do |item| %>
+  <ul>
+    <li><%= item.name %></li>
+    <li><%= item.price %></li>
+    <li><%= item.description %></li>
+    <li><%= item.weight %></li>
+  </ul>
+<% end %>
