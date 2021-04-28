@@ -4,23 +4,51 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    # render text: @items.map do |i|
-    #   "#{i.name}: #{i.price}"
+  end
+
+  def show
+    unless @item = Item.where(id: params[:id]).first
+      render body: 'Page not found', status: 404
     end
+  end
 
-    def create
-      item = Item.create(items_params)
-      if item.persisted?
-        render json: item, status: :created
-      else
-        render json: item.errors, status: :unprocessable_entity
-      end
+  def create
+    item = Item.create(items_params)
+    if item.persisted?
+      render json: item.name, status: :created
+    else
+      render json: item.errors, status: :unprocessable_entity
     end
+  end
 
-    private
-
-    def items_params
-      params.permit(:name, :price, :weight, :description, :real)
-
+  def edit
+    unless @item = Item.where(id: params[:id]).first
+      render body: 'Page not found', status: 404
     end
+  end
+
+  def update
+    item = Item.where(id: params[:id]).first
+    if item.update(items_params)
+      redirect_to item_path
+    else
+      render json: item.errors, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    item = Item.where(id: params[:id]).first.destroy
+    if item.destroyed?
+      redirect_to items_path
+    else
+      render json: item.errors, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def items_params
+    params.permit(:name, :price, :weight, :description, :real)
+
+  end
 end

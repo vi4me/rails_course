@@ -1,9 +1,12 @@
-<p></p>
+<h2>All items</h2>
+
 <% @items.map do |item| %>
   <ul>
-    <li><%= item.name %></li>
-    <li><%= item.price %></li>
-    <li><%= item.description %></li>
-    <li><%= item.weight %></li>
+    <li>name: <%= link_to item.name, item_path(item) %></li>
+    <li>price: <%= item.price %></li>
+    <li>description: <%= item.description %></li>
+    <li>weight: <%= item.weight %></li>
+    <li>real: <%= item.real %></li>
+    <li><%= button_to 'delete', item_path(item), method: :delete %></li>
   </ul>
 <% end %>
