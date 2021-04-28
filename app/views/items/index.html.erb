@@ -3,10 +3,12 @@
 <% @items.map do |item| %>
   <ul>
     <li>name: <%= link_to item.name, item_path(item) %></li>
-    <li>price: <%= item.price %></li>
+    <li>price: <%= item.price %> $</li>
     <li>description: <%= item.description %></li>
     <li>weight: <%= item.weight %></li>
     <li>real: <%= item.real %></li>
     <li><%= button_to 'delete', item_path(item), method: :delete %></li>
   </ul>
 <% end %>
+<br/>
+<%= link_to 'new item', new_item_path %>
