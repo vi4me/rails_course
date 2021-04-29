@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :find_item, only: %i[show edit update destroy upvote]
   before_action :admin?, only: %i[edit]
-  after_action :show_info, only: %i[index]
+  # after_action :show_info, only: %i[index]
 
   def index
     @items = Item.all
