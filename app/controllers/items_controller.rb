@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  layout false
+  # layout false
   skip_before_action :verify_authenticity_token
   before_action :find_item, only: %i[show edit update destroy upvote]
   # before_action :admin?, only: %i[edit]
@@ -57,11 +57,6 @@ class ItemsController < ApplicationController
   def find_item
     @item = Item.where(id: params[:id]).first
     render_404 unless @item
-  end
-
-  def admin?
-    render_403 unless params[:admin]
-    # render json: 'Acces denied', status: :forbidden unless params[:admin]
   end
 
   def show_info
