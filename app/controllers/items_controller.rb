@@ -6,7 +6,9 @@ class ItemsController < ApplicationController
   # after_action :show_info, only: %i[index]
 
   def index
-    @items = Item.all
+    @items = Item.all.order('votes_count DESC, price DESC').limit 20
+                       #.where('price >= ?', params[:price_from])
+                       # .where('votes_count >= 2 AND price >= 200')
   end
 
   # def show
