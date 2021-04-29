@@ -1,16 +1,16 @@
 <h2>Show</h2>
 
-<h4><%= @item.name %></h4>
+<h4><%= @item.name.upcase %></h4>
 
 <ul>
   <li>Price: <%= @item.price %>$</li>
-  <li>description: <%= @item.description %></li>
+  <li>description: <%=urls_to_content(@item.description) %></li>
+  <li>link: <%=urls_to_content("https://www.youtube.com/watch?v=_JZJ2G5t2vY&list=PL9Gk1O6XmsoZY7AuimEEhAbCMnmW2eA3Q&index=25") %></li>
   <li>weight: <%= @item.weight %></li>
   <li>real: <%= @item.real %></li>
 </ul>
-<br/>
-<%= link_to "Edit #{@item.name}", edit_item_path %>
-<br/>
-<li><%= button_to "Delete #{@item.name}", item_path(@item), method: :delete %></li>
-<br/>
-<%= link_to "All Items", items_path %>
+
+<%= button_to "Edit #{@item.name}", edit_item_path, method: :get %>
+<%= button_to "Delete #{@item.name}", item_path(@item), method: :delete %>
+<%= button_to "All Items", items_path, method: :get %>
+<%= render partial: 'shared/email' %>

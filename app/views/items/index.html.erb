@@ -16,7 +16,7 @@
       <th>rating</th>
       <th>delete</th>
     </tr>
-    <% @items.map do |item| %>
+    <% @items.sort.map do |item| %>
     <tr>
       <td><%= item.id %></td>
       <td><%= link_to item.name, item_path(item) %></td>
@@ -35,3 +35,4 @@
     <%= button_to 'expensive', expensive_items_path, method: :get %>
     <%= button_to 'All items', items_path, method: :get %>
 <% end %>
+<%= render partial: 'shared/email' %>

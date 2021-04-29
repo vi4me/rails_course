@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   layout false
   skip_before_action :verify_authenticity_token
   before_action :find_item, only: %i[show edit update destroy upvote]
-  before_action :admin?, only: %i[edit]
+  # before_action :admin?, only: %i[edit]
   # after_action :show_info, only: %i[index]
 
   def index
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
     if @item.update(items_params)
       redirect_to item_path
     else
-      render json: item.errors, status: :unprocessable_entity
+      render json: @item.errors, status: :unprocessable_entity
     end
   end
 
