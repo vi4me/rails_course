@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   # has_many :images, as: :imageable, inverse_of: :imageable
 
 
-  validates :price, numericality: { greater_than: 0, allow_nil: true }
+  validates :price, numericality: { greater_than: 0 }#, allow_nil: true }
   validates :name, :description, presence: true
 
   # after_initialize {p 'initialize'} #Item.new Item.first

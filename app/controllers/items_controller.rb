@@ -25,9 +25,12 @@ class ItemsController < ApplicationController
   def create
     item = Item.create(items_params)
     if item.persisted?
+      flash[:success] = "Item was created"
       redirect_to items_path
     else
-      render json: item.errors, status: :unprocessable_entity
+      flash.now[:error] = "Please fill all fields correctly"
+      render :new
+      # json: item.errors, status: :unprocessable_entity
     end
   end
 
@@ -37,17 +40,20 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(items_params)
+      flash[:success] = "Item was updated"
       redirect_to item_path
     else
-      render json: @item.errors, status: :unprocessable_entity
+      flash.now[:error] = "Please fill all fields correctly"
+      # render json: @item.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
     if @item.destroy.destroyed?
+      flash[:success] = "Item was deleted"
       redirect_to items_path
     else
-      render json: item.errors, status: :unprocessable_entity
+      # render json: item.errors, status: :unprocessable_entity
     end
   end
 
