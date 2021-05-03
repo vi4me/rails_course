@@ -18,13 +18,17 @@ class ItemsController < ApplicationController
     @items = @items.includes(:image)
   end
 
+  def new
+    @item = Item.new
+  end
+
   # def show
   #   render body: 'Page not found', status: 404 unless @item
   # end
 
   def create
-    item = Item.create(items_params)
-    if item.persisted?
+    @item = Item.create(items_params)
+    if @item.persisted?
       flash[:success] = "Item was created"
       redirect_to items_path
     else
@@ -79,6 +83,6 @@ class ItemsController < ApplicationController
   end
 
   def items_params
-    params.permit(:name, :price, :weight, :description, :real)
+    params.require(:item).permit(:name, :price, :weight, :description, :real)
   end
 end
