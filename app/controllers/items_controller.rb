@@ -35,7 +35,6 @@ class ItemsController < ApplicationController
       # json: item.errors, status: :unprocessable_entity
     end
   end
-
   # def edit
   #   render body: 'Page not found', status: 404 unless @item
   # end
