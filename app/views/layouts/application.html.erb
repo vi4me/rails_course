@@ -12,11 +12,12 @@
   </head>
 
   <body>
+    <%= render 'include/auth/auth_header' %>
     <div class="container">
       <h1>Rails Course</h1>
-      <p style="color: #B00100"><%= flash[:error] %></p>
-      <p style="color: green"><%= flash[:success] %></p>
-
+      <!-- <p style="color: #B00100"><%= flash[:error] %></p>
+      <p style="color: green"><%= flash[:success] %></p> -->
+      <%= render 'include/main/notification' %>
       <%= yield %>
     </div>
 
