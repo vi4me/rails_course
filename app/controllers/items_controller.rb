@@ -9,13 +9,11 @@ class ItemsController < ApplicationController
     # @items = Item.all.sort
                        # order('votes_count DESC, price DESC').limit 20
                        # .where('votes_count >= 2 AND price >= 200')
-    @items = Item
+    @items = Item.all.order(:id).includes :image
     @items = @items.where('price >= ?', params[:price_from]) if params[:price_from]
     @items = @items.where('created_at >= ?', 1.day.ago) if params[:today]
     @items = @items.where('votes_count >= ?', params[:votes_from]) if params[:votes_from]
-    @items = @items.order(:id)
     # http://localhost:3000/items?votes_from=3&price_from=500&today=1
-    @items = @items.includes(:image)
   end
 
   def new
